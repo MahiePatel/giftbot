@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GiftBot — Find the Perfect Gift</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">✦ AI-Powered Gift Finder</div>
+      <h1>Find the <em>perfect</em> gift,<br/>every single time.</h1>
+      <p>Answer a few questions. We'll use AI to suggest personalised gifts — with real links to shop instantly.</p>
+    </div>
+    <div class="hero-blobs">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+    </div>
+  </header>
+
+  <!-- WIZARD FORM -->
+  <main id="form" class="form-section">
+    <div class="container">
+      <div class="form-card">
+        
+        <!-- Progress Bar -->
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <!-- Step 1: Basics -->
+        <div class="wizard-step active" id="step-1">
+          <div class="form-header">
+            <span class="step-pill">Step 1 of 3</span>
+            <h2>Who are we gifting?</h2>
+          </div>
+          <div class="field-grid">
+            <div class="field">
+              <label for="recipient">Who's the gift for?</label>
+              <input id="recipient" type="text" placeholder="e.g. Best friend, Wife..."/>
+            </div>
+            <div class="field">
+              <label for="age">Their age</label>
+              <input id="age" type="text" placeholder="e.g. 28, mid-30s..."/>
+            </div>
+            <div class="field full">
+              <label for="location">City / Location (Optional)</label>
+              <input id="location" type="text" placeholder="e.g. Mumbai, New York... Helps with local experiences!"/>
+            </div>
+          </div>
+          <div class="wizard-actions">
+            <button class="nav-btn next-btn" onclick="nextStep(2)">Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Interests -->
+        <div class="wizard-step" id="step-2">
+          <div class="form-header">
+            <span class="step-pill">Step 2 of 3</span>
+            <h2>Interests & Occasion</h2>
+          </div>
+          <div class="field-grid">
+            <div class="field full">
+              <label for="occasion">What's the occasion?</label>
+              <input id="occasion" type="text" placeholder="e.g. Birthday, Anniversary, Just because..."/>
+            </div>
+            <div class="field full">
+              <label for="interests">Their interests & hobbies</label>
+              <textarea id="interests" rows="3" placeholder="e.g. cooking, travel, reading, sci-fi..."></textarea>
+            </div>
+          </div>
+          <div class="wizard-actions dual">
+            <button class="nav-btn back-btn" onclick="prevStep(1)">← Back</button>
+            <button class="nav-btn next-btn" onclick="nextStep(3)">Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Preferences -->
+        <div class="wizard-step" id="step-3">
+          <div class="form-header">
+            <span class="step-pill">Step 3 of 3</span>
+            <h2>Filters & Vibes</h2>
+          </div>
+          <div class="field full">
+            <label>Would you prefer to gift…</label>
+            <div class="toggle-group" id="tg-type">
+              <button class="toggle active" data-val="a physical thing">🎁 Physical</button>
+              <button class="toggle" data-val="an experience">✨ Experience</button>
+              <button class="toggle" data-val="either works">🤷 Either</button>
+            </div>
+          </div>
+
+          <div class="field full" style="margin-top:1.2rem">
+            <label>Budget range</label>
+            <div class="toggle-group" id="tg-budget">
+              <button class="toggle active" data-val="Under ₹1000">Under ₹1k</button>
+              <button class="toggle" data-val="₹1000 - ₹3000">₹1k–₹3k</button>
+              <button class="toggle" data-val="₹3000–₹7000">₹3k–₹7k</button>
+              <button class="toggle" data-val="Above ₹7000">Above ₹7k</button>
+            </div>
+          </div>
+
+          <div class="sliders" style="margin-top: 1.5rem;">
+            <div class="slider-row">
+              <div class="slider-top">
+                <span class="slider-label">💝 Emotional value</span>
+                <span class="slider-val" id="v-emotion">7</span>
+              </div>
+              <input type="range" min="1" max="10" value="7" step="1" id="s-emotion"
+                     oninput="document.getElementById('v-emotion').textContent=this.value"/>
+            </div>
+
+            <div class="slider-row">
+              <div class="slider-top">
+                <span class="slider-label">✨ Aesthetics</span>
+                <span class="slider-val" id="v-looks">5</span>
+              </div>
+              <input type="range" min="1" max="10" value="5" step="1" id="s-looks"
+                     oninput="document.getElementById('v-looks').textContent=this.value"/>
+            </div>
+
+            <div class="slider-row">
+              <div class="slider-top">
+                <span class="slider-label">💎 Luxury Feel</span>
+                <span class="slider-val" id="v-price">6</span>
+              </div>
+              <input type="range" min="1" max="10" value="6" step="1" id="s-price"
+                     oninput="document.getElementById('v-price').textContent=this.value"/>
+            </div>
+            
+            <div class="slider-row">
+              <div class="slider-top">
+                <span class="slider-label">🤝 Familiarity</span>
+                <span class="slider-val" id="v-know">7</span>
+              </div>
+              <input type="range" min="1" max="10" value="7" step="1" id="s-know"
+                     oninput="document.getElementById('v-know').textContent=this.value"/>
+            </div>
+          </div>
+
+          <div class="wizard-actions dual">
+            <button class="nav-btn back-btn" onclick="prevStep(2)">← Back</button>
+            <button class="submit-btn" id="submit-btn" onclick="submitForm()">✨ Generate Gifts</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- LOADING -->
+  <section id="loading" class="loading-section" style="display:none">
+    <div class="container">
+      <div class="loading-card">
+        <div class="spinner"></div>
+        <h3>Curating perfect gifts...</h3>
+        <p id="loading-msg">Claude AI is thinking 🤔</p>
+        <div class="loading-steps">
+          <div class="lstep active" id="ls1">🎁 Scanning thousands of ideas</div>
+          <div class="lstep" id="ls2">🔍 Matching with preferences</div>
+          <div class="lstep" id="ls3">✅ Wrapping up your list</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNWRAPPING EXPERIENCE -->
+  <section id="unwrapping" class="unwrap-section" style="display:none">
+    <div class="container">
+      <div class="unwrap-header">
+        <h2>Your gifts are ready! 🎁</h2>
+        <p>Click the boxes to unwrap your curated suggestions.</p>
+      </div>
+      <div class="gift-boxes-container">
+        <!-- 5 Boxes generated in JS -->
+      </div>
+      <button class="reveal-all-btn" style="display:none;" onclick="showDashboard()">Go to Dashboard →</button>
+    </div>
+  </section>
+
+  <!-- DASHBOARD RESULTS -->
+  <section id="results" class="results-section" style="display:none">
+    <div class="container">
+      <div class="dashboard-header">
+        <div class="header-text">
+          <h2 id="r-title">Your Curated Collection</h2>
+          <p id="r-sub" class="r-sub"></p>
+        </div>
+        <div class="dashboard-actions">
+           <!-- Filters functionality if needed -->
+           <select id="sort-filter" onchange="sortGifts()">
+             <option value="match">Sort by Match %</option>
+             <option value="price">Sort by Price</option>
+           </select>
+        </div>
+      </div>
+      <div id="r-cards" class="dashboard-grid"></div>
+      <div class="results-actions">
+        <button class="restart-btn" onclick="restart()">← Start over</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPARK CHAT WIDGET -->
+  <div class="chat-widget">
+    <button class="chat-fab" onclick="toggleChat()">
+      <span class="fab-icon">✨</span>
+      <span class="fab-text">Ask Spark</span>
+    </button>
+    <div class="chat-window" id="chat-window" style="display:none;">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <strong>Spark ⚡</strong>
+          <small>Your AI Gift Concierge</small>
+        </div>
+        <button class="chat-close" onclick="toggleChat()">×</button>
+      </div>
+      <div class="chat-body" id="chat-messages">
+        <div class="message bot-message">Hello! I'm Spark. Having trouble deciding on a gift? Tell me more about who you're buying for.</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleChatEnter(event)" />
+        <button class="chat-send" onclick="sendChatMessage()">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Built with AI · GiftBot · Real links to Amazon</p>
+  </footer>
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
