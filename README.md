@@ -1,15 +1,17 @@
 # 🎁 GiftBot — AI-Powered Gift Finder
 
-A full-stack web app that uses **Claude AI** to suggest personalised gifts and fetches **real Amazon.in product links** using web search.
+🌍 **Live Demo:** [Click here to try GiftBot!](https://giftbot-abc1.onrender.com)
+
+A full-stack web app that uses **Groq's Llama 3 AI** to suggest personalized gifts and fetches real shopping/booking links instantly!
 
 ---
 
 ## Tech Stack
 
-- **Frontend:** HTML, CSS, Vanilla JavaScript
+- **Frontend:** HTML, CSS, Vanilla JavaScript (featuring interactive animations & wizard UI)
 - **Backend:** Python + Flask
-- **AI:** Anthropic Claude API (with web search tool)
-- **Shopping:** Amazon.in real product links
+- **AI:** Groq API (Llama 3.3 70B & Llama 3.1 8B)
+- **Hosting:** Render.com
 
 ---
 
