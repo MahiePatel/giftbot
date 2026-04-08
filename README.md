@@ -1,6 +1,6 @@
 # 🎁 GiftBot — AI-Powered Gift Finder
 
-🌍 **Live Demo:** [Click here to try GiftBot!](https://giftbot-abc1.onrender.com)
+🌍 **Live Demo:** https://giftbot-abc1.onrender.com
 
 A full-stack web app that uses **Groq's Llama 3 AI** to suggest personalized gifts and fetches real shopping/booking links instantly!
 
